@@ -1,0 +1,10 @@
+<br/><a class="btn btn-success" href="" role="button" ng-href="#/groups/create">Create new group</a>
+<br/>
+
+<!-- Groups -->
+<h3>Groups</h3>
+<div class="box box-info" style="cursor: pointer" ng-click="openGroup('{{group.id}}')" ng-repeat="group in groups">
+  <div class="box-body">
+    {{group.name}}
+  </div><!-- /.box-body -->
+</div><!-- /.box -->

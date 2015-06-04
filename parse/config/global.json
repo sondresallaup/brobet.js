@@ -1,0 +1,14 @@
+{
+  "global": {
+    "parseVersion": "1.4.2"
+  },
+  "applications": {
+    "NewBrobet": {
+      "applicationId": "tz5nZvaRH0LQMJMVQZUb6S02uuXKeWdv4U6hUV4B",
+      "masterKey": "mu2VAxoZhxgnV3ksNc17sa9yzwsVgDdYdiui1ffZ"
+    },
+    "_default": {
+      "link": "NewBrobet"
+    }
+  }
+}

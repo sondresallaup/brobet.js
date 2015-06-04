@@ -1,0 +1,13 @@
+<h3>{{group.name}}</h3>
+<a class="btn btn-success btn-xs" href="" role="button" ng-click="group.openGroupMembers()">Group members</a>
+<a class="btn btn-default btn-xs" href="" role="button" ng-click="group.openScoreboard()">Score board</a>
+<br/><br/>
+<input type="text" class="form-control" placeholder="What's on you mind?" />
+<div class="box box-info" style="cursor: pointer" ng-repeat="status in group.statuses">
+  <div clas="box-header with-border">
+    <h3 class="box-title">{{status.author}}</h3>
+  </div>
+  <div class="box-body">
+    {{status.text}}
+  </div><!-- /.box-body -->
+</div><!-- /.box -->

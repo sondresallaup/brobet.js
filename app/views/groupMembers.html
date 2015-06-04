@@ -1,0 +1,10 @@
+<br/><a class="btn btn-success" href="" role="button" ng-click="membership.openAddMember()">Add member</a>
+<br/>
+
+<!-- Members -->
+<h3>Members</h3>
+<div class="box box-info" style="cursor: pointer" ng-repeat="member in members">
+  <div class="box-body">
+    {{member.username}}
+  </div><!-- /.box-body -->
+</div><!-- /.box -->

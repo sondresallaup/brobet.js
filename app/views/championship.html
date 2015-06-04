@@ -1,0 +1,15 @@
+<h1>{{championship.name}}</h1>
+
+<div class="row">
+  <div class="col-md-10 col-sm-10 col-xs-12">
+
+        <div class="box box-primary box-solid text-center" style="cursor: pointer" ng-click="openMatch('{{match.id}}')" ng-repeat="match in matches">
+          <div clas="box-header with-border">
+            <h3 class="box-title"><img ng-src="{{match.homeLogo}}" height="20"> {{match.homeTeam}} vs {{match.awayTeam}} <img ng-src="{{match.awayLogo}}" height="20"></h3>
+          </div>
+          <div class="box-body {{match.id}}">
+            {{countDowntimer(match.date, match.id)}}
+          </div>
+        </div>
+    </div>
+</div>
