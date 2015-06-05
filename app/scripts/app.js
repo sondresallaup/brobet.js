@@ -21,6 +21,7 @@ angular
     if ($location.protocol() !== 'https') {
         $window.location.href = $location.absUrl().replace('http', 'https');
     }
+    $(".button-collapse").sideNav();
     Parse.initialize('tz5nZvaRH0LQMJMVQZUb6S02uuXKeWdv4U6hUV4B', 'tiaclWN9uNzykCTyKMPvimvOhFSD6dl5iLf4SmGK');
     var currentUser = Parse.User.current();
     if(currentUser) {
@@ -133,6 +134,10 @@ angular
       .when('/forgottenpassword', {
         templateUrl: 'views/forgottenpassword.html',
         controller: 'ForgottenPasswordCtrl'
+      })
+      .when('/settings', {
+        templateUrl: 'views/settings.html',
+        controller: 'SettingsCtrl'
       })
       .otherwise({
         redirectTo: '/'

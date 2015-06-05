@@ -1,37 +1,19 @@
-<div class="login-box" ng-hide="viewSideBar">
-  <div class="login-logo">
-    <a ng-href="#/"><b>bro</b>bet</a>
-  </div><!-- /.login-logo -->
-  <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Username" ng-model="username" ng-change="formChanged()"/>
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password" ng-model="password" ng-change="formChanged()"/>
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> Remember Me
-            </label>
-          </div>
-        </div><!-- /.col -->
-        <div class="col-xs-4" ng-init="isDisabled = true">
-          <button type="submit" class="btn btn-primary btn-block btn-flat" ng-disabled="isDisabled" ng-click="logIn()">Sign In</button>
-        </div><!-- /.col -->
-      </div>
-
-    <div class="social-auth-links text-center">
-      <p>- OR -</p>
-      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat disabled"><i class="fa fa-facebook"></i> Sign in using Facebook</a>
-    </div><!-- /.social-auth-links -->
-
-    <a ng-href="#/forgottenpassword">I forgot my password</a><br>
-    <a ng-href="#/register" class="text-center">Register a new membership</a>
-
-  </div><!-- /.login-box-body -->
-</div><!-- /.login-box -->
+<div class="row">
+    <form>
+        <div class="input-field col s12">
+          <i class="mdi-action-account-circle prefix"></i>
+          <input id="icon_prefix" type="text" class="validate" ng-model="username" ng-change="formChanged()">
+          <label for="icon_prefix">Username</label>
+        </div>
+        <div class="input-field col s12">
+          <i class="mdi-communication-vpn-key prefix"></i>
+          <input id="icon_key" type="password" class="validate" ng-model="password" ng-change="formChanged()">
+          <label for="icon_key">Password</label>
+        </div>
+        <div class="input-field col s12" ng-init="isDisabled = true">
+          <button type="submit" class="waves-effect waves-light btn-large" ng-disabled="isDisabled" ng-click="logIn()">Sign In</button>
+        </div>
+        <a ng-href="#/forgottenpassword">I forgot my password</a><br>
+        <a ng-href="#/register" class="text-center">Register a new membership</a>
+    </form>
+  </div>

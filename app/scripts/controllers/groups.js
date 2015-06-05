@@ -11,6 +11,7 @@ angular.module('brobetApp')
   .controller('GroupsCtrl', function ($scope, $location) {
     var currentUser = Parse.User.current();
     if(currentUser) {
+      $scope.view.title = 'Groups';
       var GroupMembership = Parse.Object.extend("GroupMembership");
       var membershipQuery = new Parse.Query(GroupMembership);
       membershipQuery.equalTo("user", currentUser);

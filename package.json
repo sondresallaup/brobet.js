@@ -38,5 +38,12 @@
   },
   "scripts": {
     "test": "grunt test"
-  }
+  },
+  "description": "This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular) version 0.11.1.",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "author": "Sondre Sallaup",
+  "license": "ISC"
 }

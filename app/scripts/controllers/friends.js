@@ -11,6 +11,7 @@ angular.module('brobetApp')
   .controller('FriendsCtrl', function ($scope, $location) {
     var currentUser = Parse.User.current();
     if(currentUser) {
+      $scope.view.title = 'Friends';
       var Friendship = Parse.Object.extend("Friendship");
       var friendshipFromQuery = new Parse.Query(Friendship);
       friendshipFromQuery.equalTo("fromUser", currentUser);

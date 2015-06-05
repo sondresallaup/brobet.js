@@ -15,7 +15,7 @@ angular.module('brobetApp')
       $scope.championship = new Object();
       championshipQuery.get(championshipId, {
         success: function(championship) {
-          $scope.championship.name = championship.get("name");
+          $scope.view.title = championship.get("name");
           $scope.$apply();
 
           // Get the matches
@@ -38,6 +38,7 @@ angular.module('brobetApp')
                 matches[i] = match;
               }
               $scope.matches = matches;
+              $scope.loading = false;
               $scope.$apply();
             },
             error: function(error) {
