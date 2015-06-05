@@ -1,9 +1,28 @@
-<br/><a class="btn btn-success" href="" role="button" ng-href="#/friends/add">Add new friend</a>
-<br/>
+<br/><a class="btn btn-success" href="" role="button" ng-click="openAddFriend()">Add new friend</a>
 
 <!-- Friends -->
-<div class="box box-info" ng-repeat="friend in friends">
+<div class="box box-info">
   <div class="box-body">
     {{friend}}
   </div><!-- /.box-body -->
 </div><!-- /.box -->
+
+<ul class="collection">
+  <li class="collection-item" ng-repeat="friend in friends">{{friend}}</li>
+</ul>
+
+
+<!-- Add friend modal -->
+<div id="addFriendModal" class="modal">
+    <div class="modal-content">
+      <h4>Add new friend</h4>
+        <div class="input-field">
+          <input id="icon_friendname" type="text" class="validate" ng-model="friend.username" ng-change="formChanged()">
+          <label for="icon_friendname">Friend's username</label>
+        </div>
+    </div>
+    <div class="modal-footer" ng-init="isDisabled = true">
+      <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+      <a href="" class="modal-action modal-close waves-effect waves-green btn-flat" ng-disabled="isDisabled" ng-click="addFriend()">Add friend</a>
+    </div>
+</div>

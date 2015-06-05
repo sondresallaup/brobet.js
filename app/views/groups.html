@@ -1,9 +1,33 @@
-<br/><a class="btn btn-success" href="" role="button" ng-href="#/groups/create">Create new group</a>
+<br/><a class="btn waves-effect waves-light" href="" ng-click="openCreateGroup()">Create new group</a>
 <br/>
 
-<!-- Groups -->
-<div class="box box-info" style="cursor: pointer" ng-click="openGroup('{{group.id}}')" ng-repeat="group in groups">
-  <div class="box-body">
-    {{group.name}}
-  </div><!-- /.box-body -->
-</div><!-- /.box -->
+<div class="row">
+    <div class="card" style="cursor: pointer" ng-click="openGroup('{{group.id}}')" ng-repeat="group in groups">
+      <div class="card-image">
+        <img width="30" src="http://pixabay.com/static/uploads/photo/2014/05/18/00/22/cloud-346645_640.png">
+        <span class="card-title"> {{group.name}} </span>
+      </div>
+      <div class="card-content center-align">
+
+      </div>
+      <div class="card-action">
+        <a href="" ng-click="openGroup('{{group.id}}')">Open group</a>
+      </div>
+    </div>
+</div>
+
+
+<!-- Create group modal -->
+<div id="createGroupModal" class="modal">
+    <div class="modal-content">
+      <h4>Create group</h4>
+        <div class="input-field">
+          <input id="icon_groupname" type="text" class="validate" ng-model="group.name" ng-change="formChanged()">
+          <label for="icon_groupname">Group name</label>
+        </div>
+    </div>
+    <div class="modal-footer" ng-init="isDisabled = true">
+      <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+      <a href="" class="modal-action modal-close waves-effect waves-green btn-flat" ng-disabled="isDisabled" ng-click="createGroup()">Create group</a>
+    </div>
+</div>

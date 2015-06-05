@@ -70,7 +70,7 @@ angular
         }
       }
 
-      timer = setInterval(showRemaining, 2000);
+      timer = setInterval(showRemaining, 1000);
     };
   })
   .config(function ($routeProvider) {

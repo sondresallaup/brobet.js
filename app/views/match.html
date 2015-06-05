@@ -1,26 +1,20 @@
-<br/><div class="box text-center">
-  <div class="box-header with-border">
-    <h1 class="box-title"><img ng-src="{{match.homeLogo}}" height="20"> {{match.homeTeam}} vs {{match.awayTeam}} <img ng-src="{{match.awayLogo}}" height="20"></h1>
-    <div class="box-tools pull-right">
-    </div><!-- /.box-tools -->
-  </div><!-- /.box-header -->
-  <div class="box-body">
-    <font size="20"><a href="" ng-init="bet.homeScore='0'" ng-click="increaseHome()">{{bet.homeScore}}</a>
-      -
-      <a href="" ng-init="bet.awayScore='0'" ng-click="increaseAway()">{{bet.awayScore}}</a></font>
-      <br/><p class="countdown">{{countDowntimer(match.date, 'countdown')}}</p>
-    <br/><a class="btn btn-default btn-xs" href="" role="button" ng-click="reset()">Reset</a>
-  </div><!-- /.box-body -->
-</div><!-- /.box -->
-
-<!-- Help box -->
-<br/><div class="box box-info box-solid text-center">
-  <div class="box-header with-border">
-    <h1 class="box-title">Info</h1>
-    <div class="box-tools pull-right">
-    </div><!-- /.box-tools -->
-  </div><!-- /.box-header -->
-  <div class="box-body">
-    Press the score numbers to place your bet. Everything is saved automatically <strong>;-)</strong>
-  </div><!-- /.box-body -->
-</div><!-- /.box -->
+<div class="row center-align">
+    <div class="card" style="cursor: pointer" ng-click="openChampionship('VyBG4nr5k5')">
+      <div class="card-image">
+        <img width="30" src="http://upload.wikimedia.org/wikipedia/commons/c/c9/Copa_america_cte_cachamay.JPG">
+        <span class="card-title"> {{match.homeTeam}} vs {{match.awayTeam}} </span>
+      </div>
+      <div class="card-content center-align">
+        <img ng-src="{{match.homeLogo}}" height="35" ng-click="increaseHome()">
+        <font size="20"><a href="" ng-init="bet.homeScore='0'" ng-click="increaseHome()">{{bet.homeScore}}</a>
+          -
+          <a href="" ng-init="bet.awayScore='0'" ng-click="increaseAway()">{{bet.awayScore}}</a></font>
+          <img ng-src="{{match.awayLogo}}" height="35" ng-click="increaseAway()">
+          <br/><p class="{{match.id}}">{{countDowntimer(match.date, match.id)}}</p>
+          <i>Press the score numbers to place your bet. Everything is saved automatically</i> <strong>;-)</strong>
+      </div>
+      <div class="card-action">
+        <a href="" ng-click="reset()">Reset score</a>
+      </div>
+    </div>
+</div>

@@ -11,6 +11,9 @@ angular.module('brobetApp')
   .controller('MatchCtrl', function ($scope, $routeParams, $location) {
     var currentUser = Parse.User.current();
     if(currentUser) {
+      $('html,body').animate({
+       scrollTop: $(".card-action").offset().top
+      });
       var matchId = $routeParams.matchId;
       var Match = Parse.Object.extend("Match");
       var match = new Match();
@@ -19,6 +22,7 @@ angular.module('brobetApp')
       $scope.match = new Object();
       matchQuery.get(matchId, {
         success: function(match) {
+          $scope.match.id = match.id;
           $scope.match.homeTeam = match.get("homeTeamStr");
           $scope.match.awayTeam = match.get("awayTeamStr");
           $scope.match.homeLogo = 'images/team_logos/' + match.get("homeTeam").id + '.GIF';

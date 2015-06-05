@@ -16,6 +16,7 @@ angular.module('brobetApp')
       championshipQuery.get(championshipId, {
         success: function(championship) {
           $scope.view.title = championship.get("name");
+          $scope.title.href = '#/championship/' + championship.id;
           $scope.$apply();
 
           // Get the matches
