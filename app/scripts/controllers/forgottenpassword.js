@@ -23,11 +23,10 @@ angular.module('brobetApp')
     $scope.sendReset = function() {
       Parse.User.requestPasswordReset($scope.useremail, {
         success: function() {
-        alert("Success!");
+          Materialize.toast('An email with password reset instructions has been sent', 4000);
         },
         error: function(error) {
-          // Show the error message somewhere
-        console.error(error);
+          Materialize.toast(error.message, 4000);
         }
       });
     };

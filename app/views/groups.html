@@ -1,6 +1,3 @@
-<br/><a class="btn waves-effect waves-light" href="" ng-click="openCreateGroup()">Create new group</a>
-<br/>
-
 <div class="row">
     <div class="card" style="cursor: pointer" ng-click="openGroup('{{group.id}}')" ng-repeat="group in groups">
       <div class="card-image">
@@ -30,4 +27,11 @@
       <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
       <a href="" class="modal-action modal-close waves-effect waves-green btn-flat" ng-disabled="isDisabled" ng-click="createGroup()">Create group</a>
     </div>
+</div>
+
+
+<div class="fixed-action-btn" style="bottom: 24px; right: 24px;">
+    <a class="btn-floating btn-large red" ng-click="openCreateGroup()">
+      <i class="large mdi-content-add"></i>
+    </a>
 </div>

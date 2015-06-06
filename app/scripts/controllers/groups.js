@@ -70,16 +70,16 @@ angular.module('brobetApp')
               groupMembership.set("role", "ADMIN");
               groupMembership.save(null, {
                 success: function(groupMembership) {
-                  alert($scope.group.name + " has been created ;-)");
+                  Materialize.toast($scope.group.name + ' has been created ;-)', 4000);
                   $location.path('/groups/' + groupMembership.id);
                 },
                 error: function(object, error) {
-                  console.error(error);
+                  Materialize.toast(error.message, 4000);
                 }
               });
             },
             error: function(object, error) {
-              console.error(error);
+              Materialize.toast(error.message, 4000);
             }
           });
       }

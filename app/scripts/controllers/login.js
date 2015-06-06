@@ -27,7 +27,7 @@ angular.module('brobetApp')
           location.reload();
         },
         error: function(user, error) {
-          alert(error.message);
+          Materialize.toast(error.message, 4000);
         }
       });
     };

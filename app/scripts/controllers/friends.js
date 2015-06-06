@@ -69,7 +69,7 @@ angular.module('brobetApp')
               friendshipFromQuery.find({
                 success: function(friendships) {
                   if(friendships.length > 0) {
-                      alert("You are already friends!")
+                    Materialize.toast('You are already friends!', 4000)
                   }
                   else { // Checks the reversed friendship
                     var friendshipToQuery = new Parse.Query(Friendship);
@@ -78,7 +78,7 @@ angular.module('brobetApp')
                     friendshipToQuery.find({
                       success: function(friendships) {
                         if(friendships.length > 0) {
-                          alert("You are already friends!");
+                          Materialize.toast('You are already friends!', 4000);
                         }
                         else {
                           // Add friend to db
@@ -87,36 +87,36 @@ angular.module('brobetApp')
                           friendship.set("toUser", users[0]);
                           friendship.save(null, {
                             success: function(friendship) {
-                              alert($scope.friend.username + ' added ;-)');
+                              Materialize.toast($scope.friend.username + ' added ;-)', 4000);
                               $location.path( '/friends' );
                             },
                             error: function(object, error) {
-                              console.error(error);
+                              Materialize.toast(error.message, 4000);
                             }
                           });
                         }
                       },
                       error: function(error) {
-                        console.error(error);
+                        Materialize.toast(error.message, 4000);
                       }
                     });
                   }
                 },
                 error: function(error) {
-                  console.error(error);
+                  Materialize.toast(error.message, 4000);
                 }
               });
             }
             else {
-              alert("User doesn't exist");
+              Materialize.toast('User does not exist', 4000);
             }
             },
             error: function(error) {
-              console.error(error);
+              Materialize.toast(error.message, 4000);
             }
           });
         } else {
-          // TODO: error message
+          Materialize.toast('You must provide a username', 4000);
         }
       };
     }

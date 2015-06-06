@@ -18,14 +18,23 @@ angular.module('brobetApp')
           $scope.isDisabled = false;
         }
         else {
-          // TODO: passwords doesnt match
           $scope.isDisabled = true;
         }
       } else {
-        //TODO: inputs must be fillled
         $scope.isDisabled = true;
       }
     };
+
+    $scope.passwordInputsChange = function() {
+      $scope.formChanged();
+      if($scope.password === $scope.repeatPassword) {
+        $scope.passwordsDoesntMatch = false;
+      }
+      else {
+        $scope.passwordsDoesntMatch = true;
+      }
+    };
+
     $scope.register = function() {
       var user = new Parse.User();
       user.set('username', $scope.username.toLowerCase());
@@ -37,9 +46,18 @@ angular.module('brobetApp')
           location.reload();
         },
         error: function(user, error) {
-          //TODO: show error message
-          alert(error.message)
+          Materialize.toast(error.message, 4000);
         }
       });
     };
+
+    $scope.openTermsModal = function() {
+      $('#termsModal').openModal();
+    }
+
+    $scope.termsAgreeClick = function() {
+      $scope.terms = true;
+      $scope.formChanged();
+      $('#termsModal').closeModal();
+    }
   });

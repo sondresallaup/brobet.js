@@ -109,39 +109,39 @@ angular.module('brobetApp')
                           newMembership.set("role", "BASIC");
                           newMembership.save(null, {
                             success: function(newMembership) {
-                              alert($scope.friend.username + " added to the group ;-)");
+                              Materialize.toast($scope.friend.username + ' added to the group ;-)', 4000);
                               $scope.$apply();
                             },
                             error: function(object, error) {
-                              console.error(error);
+                              Materialize.toast(error.message, 4000);
                             }
                           });
                         }
                         else {
-                          alert("User is already member of this group");
+                          Materialize.toast('User is already member of this group', 4000);
                         }
                       },
                       error: function(error) {
-                        console.error(error);
+                        Materialize.toast(error.message, 4000);
                       }
                     });
                   }
                 },
                 error: function(error) {
-                  console.error(error);
+                  Materialize.toast(error.message, 4000);
                 }
               });
             }
             else {
-              alert("User doesn't exist");
+              Materialize.toast('User does not exist', 4000);
             }
             },
             error: function(error) {
-              console.error(error);
+              Materialize.toast(error.message, 4000);
             }
           });
         } else {
-          alert();
+          Materialize.toast('You must provide a username', 4000);
         }
       };
 

@@ -1,6 +1,3 @@
-<br/><a class="btn btn-success" href="" role="button" ng-click="openAddMember()">Add member</a>
-<br/>
-
 <!-- Members -->
 <ul class="collection">
   <li class="collection-item" ng-repeat="member in members">{{member.username}}</li>
@@ -19,4 +16,10 @@
       <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
       <a href="" class="modal-action modal-close waves-effect waves-green btn-flat" ng-disabled="isDisabled" ng-click="addMember()">Add member</a>
     </div>
+</div>
+
+<div class="fixed-action-btn" style="bottom: 24; right: 24px;">
+    <a class="btn-floating btn-large red" ng-click="openAddMember()">
+      <i class="large mdi-content-add"></i>
+    </a>
 </div>

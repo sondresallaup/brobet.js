@@ -33,7 +33,7 @@ angular.module('brobetApp')
           $scope.$apply();
         },
         error: function(object, error) {
-          console.error(error);
+          Materialize.toast(error.message, 4000);
         }
       });
     }
