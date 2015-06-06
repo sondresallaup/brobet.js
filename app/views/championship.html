@@ -1,4 +1,10 @@
 <div class="row center-align">
+
+  <ul class="tabs">
+        <li class="tab col s3" ng-repeat="stage in stages">
+          <a class="truncate active" href="" ng-click="openStage('{{stage.name}}')">{{stage.name}}</a></li>
+  </ul>
+
   <!-- loader -->
   <div ng-init="loading = true" ng-show="loading" class="preloader-wrapper small active">
     <div class="spinner-layer spinner-blue-only">

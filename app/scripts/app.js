@@ -88,6 +88,10 @@ angular
         templateUrl: 'views/championship.html',
         controller: 'ChampionshipCtrl'
       })
+      .when('/championship/:championshipId/:stageId', {
+        templateUrl: 'views/championship.html',
+        controller: 'ChampionshipCtrl'
+      })
       .when('/match/:matchId', {
         templateUrl: 'views/match.html',
         controller: 'MatchCtrl'

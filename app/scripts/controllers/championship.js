@@ -19,6 +19,28 @@ angular.module('brobetApp')
           $scope.title.href = '#/championship/' + championship.id;
           $scope.$apply();
 
+          // Get stages
+          var Stage = Parse.Object.extend("Stage");
+          var stageQuery = new Parse.Query(Stage);
+          stageQuery.equalTo("championship", championship);
+          stageQuery.ascending("rank");
+          stageQuery.find({
+            success: function(results) {
+              $scope.stages = [];
+              for(var i = 0; i < results.length; i++) {
+                var result = results[i];
+                var stage = new Object();
+                stage.id = result.id;
+                if(result.get('active')) {
+                  stage.active = 'active';
+                }
+                stage.name = result.get('name');
+                $scope.stages.push(stage);
+                $scope.$apply();
+              }
+            }
+          });
+
           // Get the matches
           var Match = Parse.Object.extend("Match");
           var matchQuery = new Parse.Query(Match);
@@ -54,7 +76,15 @@ angular.module('brobetApp')
         }
       });
 
+      $scope.openStage = function(stage) {
+        $location.path('/championship/' + championshipId + '/' + stage);
+      }
+
       $scope.openMatch = function(match) {
         $location.path('/match/' + match);
       }
+  });
+
+  $(document).ready(function(){
+    $('ul.tabs').tabs();
   });
