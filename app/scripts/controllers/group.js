@@ -11,6 +11,7 @@ angular.module('brobetApp')
   .controller('GroupCtrl', function ($scope, $routeParams, $location) {
     var currentUser = Parse.User.current();
     if(currentUser) {
+      $scope.view.title = "Group";
       var groupId = $routeParams.groupId;
       var Group = Parse.Object.extend("Group");
       var groupQuery = new Parse.Query(Group);

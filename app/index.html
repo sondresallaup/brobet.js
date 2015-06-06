@@ -11,7 +11,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/materialize.min.css">
+    <link rel="stylesheet" href="styles/materialize/css/materialize.css">
     <!-- endbuild -->
   </head>
   <body ng-app="brobetApp">
@@ -30,10 +30,10 @@
         <li><a ng-href="#/settings">Settings</a></li>
       </ul>
       <ul class="side-nav" id="mobile-demo">
-        <li><a ng-href="#/">Home</a></li>
-        <li><a ng-href="#/groups">Groups</a></li>
-        <li><a ng-href="#/friends">Friends</a></li>
-        <li><a ng-href="#/settings">Settings</a></li>
+        <li><a ng-click="openHref('/')">Home</a></li>
+        <li><a ng-click="openHref('/groups')">Groups</a></li>
+        <li><a ng-click="openHref('/friends')">Friends</a></li>
+        <li><a ng-click="openHref('/settings')">Settings</a></li>
       </ul>
     </div>
   </nav>

@@ -1,10 +1,22 @@
-<br/><a class="btn btn-success" href="" role="button" ng-click="membership.openAddMember()">Add member</a>
+<br/><a class="btn btn-success" href="" role="button" ng-click="openAddMember()">Add member</a>
 <br/>
 
 <!-- Members -->
-<h3>Members</h3>
-<div class="box box-info" style="cursor: pointer" ng-repeat="member in members">
-  <div class="box-body">
-    {{member.username}}
-  </div><!-- /.box-body -->
-</div><!-- /.box -->
+<ul class="collection">
+  <li class="collection-item" ng-repeat="member in members">{{member.username}}</li>
+</ul>
+
+<!-- Add group member modal -->
+<div id="addMemberModal" class="modal">
+    <div class="modal-content">
+      <h4>Add member</h4>
+        <div class="input-field">
+          <input id="icon_friendname" type="text" class="validate" ng-model="friend.username" ng-change="formChanged()">
+          <label for="icon_friendname">Friend's username</label>
+        </div>
+    </div>
+    <div class="modal-footer" ng-init="isDisabled = true">
+      <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+      <a href="" class="modal-action modal-close waves-effect waves-green btn-flat" ng-disabled="isDisabled" ng-click="addMember()">Add member</a>
+    </div>
+</div>

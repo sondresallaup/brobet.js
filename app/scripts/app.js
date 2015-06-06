@@ -39,6 +39,11 @@ angular
       $location.path( '/login' );
     };
 
+    $rootScope.openHref = function(href) {
+      $location.path(href);
+      $('.button-collapse').sideNav('hide');
+    }
+
     $rootScope.countDowntimer = function(dateTime, id) {
       var end = new Date(dateTime);
 
