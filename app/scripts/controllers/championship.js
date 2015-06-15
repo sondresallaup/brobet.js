@@ -49,6 +49,7 @@ angular.module('brobetApp')
           matchQuery.find({
             success: function(results) {
               var matches = results;
+              $scope.matches = [];
               for(var i = 0; i < results.length; i++) {
                 var match = new Object();
                 var result = results[i];
@@ -59,8 +60,9 @@ angular.module('brobetApp')
                 match.awayLogo = 'images/team_logos/' + result.get("awayTeam").id + '.GIF';
                 match.date = result.get("time");
                 matches[i] = match;
+                $scope.matches.push(match);
+                $scope.$apply();
               }
-              $scope.matches = matches;
               $scope.loading = false;
               $scope.$apply();
             },
@@ -82,6 +84,44 @@ angular.module('brobetApp')
 
       $scope.openMatch = function(match) {
         $location.path('/match/' + match);
+      }
+
+      $scope.getBetFromDb = function(matchId) {
+        $('#bet' + matchId).html('Loading bet');
+        var Match = Parse.Object.extend("Match");
+        var match = new Match();
+        match.id = matchId;
+        // Get bet
+        var Bet = Parse.Object.extend("Bet");
+        var bet = new Bet();
+        var betQuery = new Parse.Query(Bet);
+        betQuery.equalTo("match", match);
+        betQuery.equalTo("user", Parse.User.current());
+        betQuery.find({
+          success: function(results) {
+            if(results.length > 0) {
+              //Mark bet green as placed
+              if($('#match' + matchId).hasClass('bet')) {
+                $('#match' + matchId).removeClass('blue-grey');
+                $('#match' + matchId).addClass('green');
+              }
+
+              var bet = results[0]
+              var homeScore = bet.get("homeScore");
+              var awayScore = bet.get("awayScore");
+              $('#bet' + matchId).html('<b>Your bet:</b><br/>');
+              $('#bet' + matchId).append(homeScore + ' - ');
+              $('#bet' + matchId).append(awayScore);
+            }
+            else {
+              $('#bet' + matchId).html('');
+            }
+          },
+          error: function(error) {
+            console.log(error.message);
+          }
+        });
+        // End get bet
       }
   });
 

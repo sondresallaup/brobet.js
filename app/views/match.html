@@ -1,5 +1,19 @@
 <div class="row center-align">
-    <div class="card" style="cursor: pointer" ng-click="openChampionship('VyBG4nr5k5')">
+    <div class="card" id="match{{match.id}}" ng-init="loading = true" >
+      <!-- loader -->
+      <div ng-show="loading" class="preloader-wrapper small active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+      <!-- end-loader -->
+      <div ng-hide="loading">
       <div class="card-image">
         <img width="30" src="http://upload.wikimedia.org/wikipedia/commons/c/c9/Copa_america_cte_cachamay.JPG">
         <span class="card-title"> {{match.homeTeam}} vs {{match.awayTeam}} </span>
@@ -17,4 +31,5 @@
         <a href="" ng-click="reset()">Reset score</a>
       </div>
     </div>
+  </div>
 </div>

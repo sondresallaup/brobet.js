@@ -8,7 +8,7 @@
  * Controller of the brobetApp
  */
 angular.module('brobetApp')
-  .controller('MatchCtrl', function ($scope, $routeParams, $location) {
+  .controller('MatchCtrl', function ($scope, $rootScope, $routeParams, $location) {
     var currentUser = Parse.User.current();
     if(currentUser) {
       $('html,body').animate({
@@ -31,8 +31,7 @@ angular.module('brobetApp')
           $scope.$apply();
         },
         error: function(object, error) {
-          console.log(error.message);
-          //TODO: error message
+          Materialize.toast(error.message, 4000);
         }
       });
 
@@ -50,49 +49,44 @@ angular.module('brobetApp')
             $scope.userbet = bet;
             $scope.bet.homeScore = bet.get("homeScore");
             $scope.bet.awayScore = bet.get("awayScore");
+            $scope.loading = false;
             $scope.$apply();
           }
           else {
-            var bet = new Bet();
-            bet.set("user", Parse.User.current());
-            bet.set("match", match);
-            bet.set("homeScore", parseInt($scope.bet.homeScore));
-            bet.set("awayScore", parseInt($scope.bet.awayScore));
-            bet.save(null, {
-              success: function(bet) {
-                $scope.userbet = bet;
-              },
-              error: function(bet, error) {
-                alert(error.message);
-              }
-            });
+            $scope.createBetIfNotExist();
           }
         },
         error: function(error) {
-          alert(error.message);
+          Materialize.toast(error.message, 4000);
         }
       });
 
       $scope.increaseHome = function() {
-        $scope.bet.homeScore++;
-        if($scope.userbet != undefined) {
-          var userbet = $scope.userbet;
-          userbet.set("homeScore", $scope.bet.homeScore);
-          userbet.save(null, {
-            success: function(userbet) {
+        if(!$rootScope.hasMatchExpired($scope.match.date)) {
+          $scope.bet.homeScore++;
+          if($scope.userbet != undefined) {
+            var userbet = $scope.userbet;
+            userbet.set("homeScore", $scope.bet.homeScore);
+            userbet.save(null, {
+              success: function(userbet) {
 
-            },
-            error: function(object, error) {
-              alert(error.message);
-            }
-          });
+              },
+              error: function(object, error) {
+                Materialize.toast(error.message, 4000);
+              }
+            });
+          }
+          else {
+
+          }
         }
         else {
-
+            Materialize.toast("It's to late to bet on this match :(", 4000);
         }
       }
 
       $scope.increaseAway = function() {
+        if(!$rootScope.hasMatchExpired($scope.match.date)) {
         $scope.bet.awayScore++;
         if($scope.userbet != undefined) {
           var userbet = $scope.userbet;
@@ -102,7 +96,7 @@ angular.module('brobetApp')
 
             },
             error: function(object, error) {
-              alert(error.message);
+              Materialize.toast(error.message, 4000);
             }
           });
         }
@@ -110,8 +104,13 @@ angular.module('brobetApp')
 
         }
       }
+      else {
+        Materialize.toast("It's to late to bet on this match :(", 4000);
+      }
+      }
 
       $scope.reset = function() {
+        if(!$rootScope.hasMatchExpired($scope.match.date)) {
         $scope.bet.homeScore = 0;
         $scope.bet.awayScore = 0;
         if($scope.userbet != undefined) {
@@ -123,13 +122,49 @@ angular.module('brobetApp')
 
             },
             error: function(object, error) {
-              alert(error.message);
+              console.log(error.message);
             }
           });
         }
         else {
 
         }
+      }
+      else {
+        Materialize.toast("It's to late to bet on this match :(", 4000);
+      }
+      }
+
+      $scope.createBetIfNotExist = function() {
+        var timer;
+
+        function createBetIfNotExist() {
+          if($scope.userbet === undefined && !$rootScope.hasMatchExpired($scope.match.date)) {
+            $scope.loading = true;
+            $scope.$apply();
+            var bet = new Bet();
+            bet.set("user", Parse.User.current());
+            bet.set("match", match);
+            bet.set("homeScore", parseInt($scope.bet.homeScore));
+            bet.set("awayScore", parseInt($scope.bet.awayScore));
+            bet.save(null, {
+              success: function(bet) {
+                clearInterval(timer);
+                $scope.userbet = bet;
+                $scope.loading = false;
+                $scope.$apply();
+              },
+              error: function(bet, error) {
+                Materialize.toast(error.message, 4000);
+              }
+            });
+          }
+          else {
+            $scope.loading = false;
+            $scope.$apply();
+          }
+        }
+        timer = setInterval(createBetIfNotExist, 1000);
       }
     }
     else {

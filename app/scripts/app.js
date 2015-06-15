@@ -44,7 +44,7 @@ angular
       $('.button-collapse').sideNav('hide');
     }
 
-    $rootScope.countDowntimer = function(dateTime, id) {
+    $rootScope.countDowntimer = function(dateTime, id, cardId) {
       var end = new Date(dateTime);
 
       var _second = 1000;
@@ -57,9 +57,10 @@ angular
           var now = new Date();
           var distance = end - now;
           if (distance < 0) {
-
-              clearInterval(timer);
               $('.' + id).html('EXPIRED!');
+              $('#' + cardId).removeClass('blue-grey');
+              $('#' + cardId).removeClass('bet');
+              $('#' + cardId).addClass('red');
 
               return;
           }
@@ -72,11 +73,23 @@ angular
             $('.' + id).append(hours + 'hrs ');
             $('.' + id).append(minutes + 'mins ');
             $('.' + id).append(seconds + 'secs');
+            $('#' + cardId).addClass('bet');
         }
       }
 
       timer = setInterval(showRemaining, 1000);
     };
+
+    $rootScope.hasMatchExpired = function(dateTime) {
+      var end = new Date(dateTime);
+      var now = new Date();
+      var distance = end - now;
+      if (distance > 0) {
+          return false;
+      }
+      return true;
+    };
+
   })
   .config(function ($routeProvider) {
     $routeProvider

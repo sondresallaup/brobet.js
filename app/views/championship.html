@@ -20,12 +20,13 @@
   <!-- end-loader -->
 
 
-  <div class="card blue-grey darken-1" style="cursor: pointer" ng-click="openMatch('{{match.id}}')" ng-repeat="match in matches">
+  <div id="match{{match.id}}" class="card blue-grey darken-1" style="cursor: pointer" ng-click="openMatch('{{match.id}}')" ng-repeat="match in matches">
     <div class="card-content white-text">
       <span class="card-title"><img ng-src="{{match.homeLogo}}" height="20"> {{match.homeTeam}} - {{match.awayTeam}} <img ng-src="{{match.awayLogo}}" height="20"></span>
+    <div id="bet{{match.id}}">{{getBetFromDb(match.id)}}</div>
     </div>
     <div class="card-action {{match.id}} white-text">
-      {{countDowntimer(match.date, match.id)}}
+      {{countDowntimer(match.date, match.id, 'match'+ match.id)}}
     </div>
   </div>
 </div>
