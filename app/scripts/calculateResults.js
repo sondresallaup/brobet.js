@@ -1,6 +1,9 @@
 var pointsCorrectHXA = 1;
 var pointsCorrectResult = 3;
-var matchId = 'EC4WILfB2i';
+
+
+
+var matchId = 'ntj4spKszS';
 
 
 Parse.initialize('tz5nZvaRH0LQMJMVQZUb6S02uuXKeWdv4U6hUV4B', 'tiaclWN9uNzykCTyKMPvimvOhFSD6dl5iLf4SmGK');
@@ -49,6 +52,40 @@ finishedMatchesQuery.find({
             bet.save(null, {
               success: function(bet) {
                 console.log(bet);
+                //TODO: update score
+                var Score = Parse.Object.extend('Score');
+                var scoreQuery = new Parse.Query(Score);
+                scoreQuery.equalTo('user', bet.get('user'));
+                scoreQuery.equalTo('championship', match.get('championship'));
+                scoreQuery.first({
+                  success: function(score) {
+                    debugger;
+                    var currentScore;
+                    if(score === undefined) {
+                      score = new Score();
+                      score.set('user', bet.get('user'));
+                      score.set('championship', match.get('championship'));
+                      currentScore = 0;
+                    }
+                    else {
+                      currentScore = score.get('score');
+                    }
+                    var newScore = currentScore + bet.get('scoreHXA') + bet.get('scoreResult');
+                    score.set('score', newScore);
+                    score.save(null, {
+                      success: function(score) {
+                        console.log(score);
+                      },
+                      error: function(object, error) {
+                        console.error(error);
+                      }
+                    });
+
+                  },
+                  error: function(error) {
+                    console.error(error);
+                  }
+                });
               },
               error: function(bet, error) {
                 console.error(error);

@@ -1,0 +1,6 @@
+<!-- Members -->
+<ul class="collection">
+  <li class="collection-item" ng-repeat="member in members | orderBy:'-score'" ng-click="member.openUserScores()">
+    {{$index + 1}}: <b>{{member.username}}</b> - {{member.score}} points
+  </li>
+</ul>

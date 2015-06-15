@@ -161,6 +161,10 @@ angular
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl'
       })
+      .when('/user/:userId/:championshipId', {
+        templateUrl: 'views/groupScoreboard.html',
+        controller: 'GroupScoreboardCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

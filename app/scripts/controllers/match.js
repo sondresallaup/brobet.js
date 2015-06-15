@@ -49,6 +49,10 @@ angular.module('brobetApp')
             $scope.userbet = bet;
             $scope.bet.homeScore = bet.get("homeScore");
             $scope.bet.awayScore = bet.get("awayScore");
+            $scope.bet.scoreHXA = bet.get('scoreHXA');
+            $scope.bet.scoreResult = bet.get('scoreResult');
+            $scope.hasReceivedScore = $scope.bet.scoreHXA !== undefined;
+
             $scope.loading = false;
             $scope.$apply();
           }

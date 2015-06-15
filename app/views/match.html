@@ -14,16 +14,19 @@
       </div>
       <!-- end-loader -->
       <div ng-hide="loading">
-      <div class="card-image">
-        <img width="30" src="http://upload.wikimedia.org/wikipedia/commons/c/c9/Copa_america_cte_cachamay.JPG">
-        <span class="card-title"> {{match.homeTeam}} vs {{match.awayTeam}} </span>
-      </div>
       <div class="card-content center-align">
+        <h3>{{match.homeTeam}} vs {{match.awayTeam}}</h3>
         <img ng-src="{{match.homeLogo}}" height="35" ng-click="increaseHome()">
         <font size="20"><a href="" ng-init="bet.homeScore='0'" ng-click="increaseHome()">{{bet.homeScore}}</a>
           -
           <a href="" ng-init="bet.awayScore='0'" ng-click="increaseAway()">{{bet.awayScore}}</a></font>
           <img ng-src="{{match.awayLogo}}" height="35" ng-click="increaseAway()">
+          <br/>
+          <div ng-show="hasReceivedScore">
+            Score HXA: {{bet.scoreHXA}} <br/>
+            Score result: {{bet.scoreResult}} <br/>
+            Total: {{bet.scoreHXA + bet.scoreResult}}
+          </div>
           <br/><p class="{{match.id}}">{{countDowntimer(match.date, match.id)}}</p>
           <i>Press the score numbers to place your bet. Everything is saved automatically</i> <strong>;-)</strong>
       </div>

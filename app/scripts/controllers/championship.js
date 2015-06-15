@@ -58,6 +58,9 @@ angular.module('brobetApp')
                 match.awayTeam = result.get("awayTeamStr");
                 match.homeLogo = 'images/team_logos/' + result.get("homeTeam").id + '.GIF';
                 match.awayLogo = 'images/team_logos/' + result.get("awayTeam").id + '.GIF';
+                match.isPlayed = result.get('homeScore') > -1;
+                match.homeScore = result.get('homeScore');
+                match.awayScore = result.get('awayScore');
                 match.date = result.get("time");
                 matches[i] = match;
                 $scope.matches.push(match);
@@ -111,7 +114,14 @@ angular.module('brobetApp')
               var awayScore = bet.get("awayScore");
               $('#bet' + matchId).html('<b>Your bet:</b><br/>');
               $('#bet' + matchId).append(homeScore + ' - ');
-              $('#bet' + matchId).append(awayScore);
+              $('#bet' + matchId).append(awayScore)
+              var scoreHXA = bet.get('scoreHXA');
+              var scoreResult = bet.get('scoreResult');
+              var scoreTotal = scoreHXA + scoreResult;
+              var hasReceivedScore = scoreHXA !== undefined;;
+              if(hasReceivedScore) {
+                $('#bet' + matchId).append('<br/>Points: ' + scoreTotal);
+              }
             }
             else {
               $('#bet' + matchId).html('');
